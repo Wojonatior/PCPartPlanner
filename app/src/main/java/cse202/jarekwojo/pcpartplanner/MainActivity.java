@@ -1,17 +1,45 @@
 package cse202.jarekwojo.pcpartplanner;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
+    List<Part> partList = new ArrayList<>(Arrays.asList(
+        new Part("Part 1", "Description 1"),
+        new Part("Part 2", "Description 2")));
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        ListView partListView = (ListView) findViewById(R.id.partListView);
+
+        PartAdapter adapter = new PartAdapter(this, partList);
+
+        partListView.setAdapter(adapter);
+
+        final Button addPartButton = (Button) findViewById(R.id.addPartButton);
+
+        addPartButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent addPartIntent = new Intent(MainActivity.this, AddPartActivity.class);
+                startActivity(addPartIntent);
+            }
+        });
     }
 
 
