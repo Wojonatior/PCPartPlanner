@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/addPart_PartName"
-            android:hint="(required)" />
+            android:hint="(required)"
+            android:maxLines="1" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,11 +53,34 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Spinner
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner2"
-        android:layout_below="@+id/linearLayout"
-        android:layout_toRightOf="@+id/typeSpinner"
-        android:layout_toEndOf="@+id/typeSpinner" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Warranty Start Date"
+        android:id="@+id/dateTextLabel"
+        android:layout_below="@+id/partTypeSpinner"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Set Date"
+        android:id="@+id/datePickerButton"
+        android:layout_alignTop="@+id/dateTextView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Date"
+        android:id="@+id/dateTextView"
+        android:layout_below="@+id/dateTextLabel"
+        android:layout_toRightOf="@+id/datePickerButton"
+        android:layout_toEndOf="@+id/datePickerButton"
+        android:paddingTop="15dp" />
+
 </RelativeLayout>
