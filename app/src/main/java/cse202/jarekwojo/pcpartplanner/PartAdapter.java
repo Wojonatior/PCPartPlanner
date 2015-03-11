@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -43,14 +44,14 @@ public class PartAdapter extends BaseAdapter {
 
         //Get text views
         TextView nameView = (TextView) view.findViewById(R.id.partName);
-        TextView descriptionView = (TextView) view.findViewById(R.id.partDescription);
+        TextView typeView = (TextView) view.findViewById(R.id.partType);
 
         //Set part
         Part part = (Part) getItem(position);
 
         //Set texts
         nameView.setText(part.getName());
-        descriptionView.setText(part.getDescription());
+        typeView.setText(part.getType());
 
         return view;
     }

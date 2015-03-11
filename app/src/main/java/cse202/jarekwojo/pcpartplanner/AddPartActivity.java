@@ -4,9 +4,23 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 
 public class AddPartActivity extends ActionBarActivity {
+
+    //Array of part types for the spinner
+    String[] partTypes = new String[] {
+        "Motherboard",
+        "CPU",
+        "Video Card",
+        "Hard Drive",
+        "Ram",
+        "Case",
+        "Power Supply",
+        "Custom"
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -14,6 +28,18 @@ public class AddPartActivity extends ActionBarActivity {
         setContentView(R.layout.activity_add_part);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        Spinner partTypeSpinner = (Spinner) findViewById(R.id.partTypeSpinner);
+
+        ArrayAdapter<String> typeSpinnerAdapter = new ArrayAdapter<String>(
+                AddPartActivity.this,
+                android.R.layout.simple_spinner_item,
+                partTypes);
+
+        typeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        partTypeSpinner.setAdapter(typeSpinnerAdapter);
+
     }
 
 

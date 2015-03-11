@@ -5,23 +5,23 @@ package cse202.jarekwojo.pcpartplanner;
  */
 public class Part {
     private String name;
-    private String description;
+    private String type;
 
     public Part(String n, String d){
         this.name = n;
-        this.description = d;
+        this.type = d;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getDescription() {
-        return description;
+    public String getType() {
+        return type;
     }
 
     public String getName() {

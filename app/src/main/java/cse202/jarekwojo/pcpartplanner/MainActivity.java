@@ -16,8 +16,8 @@ import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
     List<Part> partList = new ArrayList<>(Arrays.asList(
-        new Part("Part 1", "Description 1"),
-        new Part("Part 2", "Description 2")));
+        new Part("Part 1", "Type 1"),
+        new Part("Part 2", "Type 2")));
 
 
     @Override
