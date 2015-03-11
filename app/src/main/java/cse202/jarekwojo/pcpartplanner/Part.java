@@ -6,13 +6,18 @@ import java.util.Date;
  * Created by Wojonatior on 3/5/15.
  */
 public class Part {
-    private String name;
-    private String type;
+    private String name, type;
+    private Date date;
     private Date warrantyStart;
+    //Intent key strings
+    public static String nameExtra = "nameExtra",
+                         typeExtra = "typeExtra",
+                         dateExtra = "dateExtra";
 
-    public Part(String n, String d){
+    public Part(String n, String d, Date date){
         this.name = n;
         this.type = d;
+        this.date = date;
     }
 
     public void setType(String type) {

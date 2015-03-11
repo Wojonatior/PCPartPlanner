@@ -3,6 +3,7 @@ package cse202.jarekwojo.pcpartplanner;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
+import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -43,7 +44,7 @@ public class AddPartActivity extends ActionBarActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         //Reference and setup spinner adapter
-        Spinner partTypeSpinner = (Spinner) findViewById(R.id.partTypeSpinner);
+        final Spinner partTypeSpinner = (Spinner) findViewById(R.id.partTypeSpinner);
         ArrayAdapter<String> typeSpinnerAdapter = new ArrayAdapter<String>(
                 AddPartActivity.this,
                 android.R.layout.simple_spinner_item,
@@ -63,10 +64,27 @@ public class AddPartActivity extends ActionBarActivity {
                 dialogFragment.show(getFragmentManager(),"date");
             }
         });
-
+        //Reference nameTextView
+        final TextView nameTextView = (TextView) findViewById(R.id.addPart_PartName);
         //Reference SubmitButton & on click functionality
         Button SubmitButton = (Button) findViewById(R.id.addPart_SubmitButton);
-
+        SubmitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Assume Valid Input
+                //Assign user input to variables
+                String name = nameTextView.getText().toString();
+                String type = (String) partTypeSpinner.getSelectedItem();
+                //Declare and package AddPartActivity return intent (on Activity Result)
+                Intent data = new Intent();
+                data.putExtra(Part.nameExtra,name);
+                data.putExtra(Part.typeExtra,type);
+                data.putExtra(Part.dateExtra,mDate);
+                setResult(RESULT_OK, data);
+                //End Activity
+                finish();
+            }
+        });
     }
 
 

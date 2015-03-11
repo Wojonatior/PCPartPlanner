@@ -11,14 +11,15 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
     //List of parts in the partlist
-    List<Part> partList = new ArrayList<>(Arrays.asList(
-        new Part("Part 1", "Type 1"),
-        new Part("Part 2", "Type 2")));
+    List<Part> partList = new ArrayList<>();
+
+    private PartAdapter mAdapter;
 
     //add part activity request code
     private static final int ADD_PART_REQUEST = 0;
@@ -32,8 +33,8 @@ public class MainActivity extends ActionBarActivity {
         ListView partListView = (ListView) findViewById(R.id.partListView);
 
         //Reference of adapter and implementation
-        PartAdapter adapter = new PartAdapter(this, partList);
-        partListView.setAdapter(adapter);
+        mAdapter = new PartAdapter(this, partList);
+        partListView.setAdapter(mAdapter);
 
         //Reference of add button
         final Button addPartButton = (Button) findViewById(R.id.addPartButton);
@@ -74,7 +75,14 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_PART_REQUEST && resultCode == RESULT_OK) {
-
+            String name = data.getStringExtra(Part.nameExtra);
+            String type = data.getStringExtra(Part.typeExtra);
+            Date date = (Date) data.getSerializableExtra(Part.dateExtra);
+            Part p = new Part(name,type,date);
+            //add part to list
+            mAdapter.add(p);
+            //Update adapter data set
+            mAdapter.notifyDataSetChanged();
         }
     }
 }

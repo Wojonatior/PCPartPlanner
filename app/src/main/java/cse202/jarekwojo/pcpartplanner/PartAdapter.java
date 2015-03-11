@@ -55,4 +55,8 @@ public class PartAdapter extends BaseAdapter {
 
         return view;
     }
+
+    public void add(Part p) {
+        partList.add(p);
+    }
 }
