@@ -25,6 +25,8 @@ public class AddPartActivity extends ActionBarActivity {
 
     private static Date mDate;
     private static TextView mDateText;
+    private static TextView manufacturerText;
+    private static TextView warrantyDurationText;
     //Array of part types for the spinner
     String[] partTypes = new String[] {
         "Motherboard",
@@ -54,6 +56,8 @@ public class AddPartActivity extends ActionBarActivity {
 
         //Reference date
         mDateText = (TextView) findViewById(R.id.dateTextView);
+        manufacturerText = (TextView) findViewById(R.id.addPart_ManufacturerName);
+        warrantyDurationText = (TextView) findViewById(R.id.addPart_warrantyDuration);
 
         //Reference DatePickerButton & on click functionality
         Button datePickerButton = (Button) findViewById(R.id.datePickerButton);
@@ -75,11 +79,15 @@ public class AddPartActivity extends ActionBarActivity {
                 //Assign user input to variables
                 String name = nameTextView.getText().toString();
                 String type = (String) partTypeSpinner.getSelectedItem();
+                String manufacturer = manufacturerText.getText().toString();
+                String warrantyDuration = warrantyDurationText.getText().toString();
                 //Declare and package AddPartActivity return intent (on Activity Result)
                 Intent data = new Intent();
                 data.putExtra(Part.nameExtra,name);
                 data.putExtra(Part.typeExtra,type);
                 data.putExtra(Part.dateExtra,mDate);
+                data.putExtra(Part.mfgExtra, manufacturer);
+                data.putExtra(Part.warrDurExtra, warrantyDuration);
                 setResult(RESULT_OK, data);
                 //End Activity
                 finish();

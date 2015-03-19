@@ -78,7 +78,9 @@ public class MainActivity extends ActionBarActivity {
             String name = data.getStringExtra(Part.nameExtra);
             String type = data.getStringExtra(Part.typeExtra);
             Date date = (Date) data.getSerializableExtra(Part.dateExtra);
-            Part p = new Part(name,type,date);
+            String manufacturer = data.getStringExtra(Part.mfgExtra);
+            String warrantyDuration = data.getStringExtra(Part.warrDurExtra);
+            Part p = new Part(name,type,date, manufacturer, warrantyDuration);
             //add part to list
             mAdapter.add(p);
             //Update adapter data set
