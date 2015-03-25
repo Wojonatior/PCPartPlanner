@@ -75,10 +75,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_PART_REQUEST && resultCode == RESULT_OK) {
-            String name = data.getStringExtra(Part.nameExtra);
-            String type = data.getStringExtra(Part.typeExtra);
-            Date date = (Date) data.getSerializableExtra(Part.dateExtra);
-            Part p = new Part(name,type,date);
+            //Get part
+            Part p = data.getParcelableExtra(Part.PART_EXTRA);
             //add part to list
             mAdapter.add(p);
             //Update adapter data set

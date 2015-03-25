@@ -52,6 +52,11 @@ public class AddPartActivity extends ActionBarActivity {
         typeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         partTypeSpinner.setAdapter(typeSpinnerAdapter);
 
+        //Set default date if necessary
+        if(mDate == null){
+            mDate = new Date();
+        }
+
         //Reference date
         mDateText = (TextView) findViewById(R.id.dateTextView);
 
@@ -77,9 +82,9 @@ public class AddPartActivity extends ActionBarActivity {
                 String type = (String) partTypeSpinner.getSelectedItem();
                 //Declare and package AddPartActivity return intent (on Activity Result)
                 Intent data = new Intent();
-                data.putExtra(Part.nameExtra,name);
-                data.putExtra(Part.typeExtra,type);
-                data.putExtra(Part.dateExtra,mDate);
+                // Add part
+                Part p = new Part(name, type, mDate);
+                data.putExtra(Part.PART_EXTRA, p);
                 setResult(RESULT_OK, data);
                 //End Activity
                 finish();
