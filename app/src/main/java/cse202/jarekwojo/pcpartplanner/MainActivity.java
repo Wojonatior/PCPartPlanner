@@ -75,17 +75,8 @@ public class MainActivity extends ActionBarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == ADD_PART_REQUEST && resultCode == RESULT_OK) {
-<<<<<<< HEAD
             //Get part
             Part p = data.getParcelableExtra(Part.PART_EXTRA);
-=======
-            String name = data.getStringExtra(Part.nameExtra);
-            String type = data.getStringExtra(Part.typeExtra);
-            Date date = (Date) data.getSerializableExtra(Part.dateExtra);
-            String manufacturer = data.getStringExtra(Part.mfgExtra);
-            String warrantyDuration = data.getStringExtra(Part.warrDurExtra);
-            Part p = new Part(name,type,date, manufacturer, warrantyDuration);
->>>>>>> origin/master
             //add part to list
             mAdapter.add(p);
             //Update adapter data set
