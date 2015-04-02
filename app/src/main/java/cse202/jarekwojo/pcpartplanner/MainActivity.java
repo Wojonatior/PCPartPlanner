@@ -11,33 +11,40 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
-    List<Part> partList = new ArrayList<>(Arrays.asList(
-        new Part("Part 1", "Description 1"),
-        new Part("Part 2", "Description 2")));
+    //List of parts in the partlist
+    List<Part> partList = new ArrayList<>();
+
+    private PartAdapter mAdapter;
+
+    //add part activity request code
+    private static final int ADD_PART_REQUEST = 0;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //Reference of listview
         ListView partListView = (ListView) findViewById(R.id.partListView);
 
-        PartAdapter adapter = new PartAdapter(this, partList);
+        //Reference of adapter and implementation
+        mAdapter = new PartAdapter(this, partList);
+        partListView.setAdapter(mAdapter);
 
-        partListView.setAdapter(adapter);
-
+        //Reference of add button
         final Button addPartButton = (Button) findViewById(R.id.addPartButton);
 
+        //Functionality of add button
         addPartButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent addPartIntent = new Intent(MainActivity.this, AddPartActivity.class);
-                startActivity(addPartIntent);
+                startActivityForResult(addPartIntent, ADD_PART_REQUEST);
             }
         });
     }
@@ -63,5 +70,17 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == ADD_PART_REQUEST && resultCode == RESULT_OK) {
+            //Get part
+            Part p = data.getParcelableExtra(Part.PART_EXTRA);
+            //add part to list
+            mAdapter.add(p);
+            //Update adapter data set
+            mAdapter.notifyDataSetChanged();
+        }
     }
 }
