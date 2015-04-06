@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 /**
@@ -58,5 +59,16 @@ public class PartAdapter extends BaseAdapter {
 
     public void add(Part p) {
         partList.add(p);
+    }
+
+    public void remove(Part p){
+        Iterator<Part> iter = partList.iterator();
+        while(iter.hasNext()){
+            Part tmp = iter.next();
+            if(tmp == p){
+                iter.remove();
+                break;
+            }
+        }
     }
 }

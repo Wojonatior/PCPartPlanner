@@ -1,5 +1,7 @@
 package cse202.jarekwojo.pcpartplanner;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -7,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -48,6 +51,15 @@ public class MainActivity extends ActionBarActivity {
         //Reference of adapter and implementation
         mAdapter = new PartAdapter(this, partList);
         partListView.setAdapter(mAdapter);
+
+        partListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                Part part = (Part) mAdapter.getItem(position);
+                showAlertDialog(part);
+                return true;
+            }
+        });
 
         //Reference of add button
         final Button addPartButton = (Button) findViewById(R.id.addPartButton);
@@ -160,5 +172,29 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
+    }
+
+    private void showAlertDialog(Part part){
+        final AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        final Part tmpPart = part;
+        alertDialog.setTitle("Delete Part");
+        alertDialog.setMessage("Are you sure you want to delete " + part.getName() + "?");
+        alertDialog.setButton(DialogInterface.BUTTON_POSITIVE, "Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which){
+                        mAdapter.remove(tmpPart);
+                        mAdapter.notifyDataSetChanged();
+                        alertDialog.dismiss();
+                    }
+                });
+
+        alertDialog.setButton(DialogInterface.BUTTON_NEGATIVE, "No",
+                new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        alertDialog.dismiss();
+                    }
+                });
+        alertDialog.show();
     }
 }
