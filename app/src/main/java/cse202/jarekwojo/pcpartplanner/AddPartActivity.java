@@ -59,6 +59,7 @@ public class AddPartActivity extends ActionBarActivity {
 
         //Reference date
         mDateText = (TextView) findViewById(R.id.dateTextView);
+        mDateText.setText(DatePickerFragment.formatDate(mDate));
 
         //Reference DatePickerButton & on click functionality
         Button datePickerButton = (Button) findViewById(R.id.datePickerButton);
@@ -142,12 +143,10 @@ public class AddPartActivity extends ActionBarActivity {
             mDateText.setText(formatDate(mDate));
         }
 
-        private String formatDate(Date d){
+        public static String formatDate(Date d){
             SimpleDateFormat sdf = new SimpleDateFormat("MMMM dd, yyyy", Locale.getDefault());
 
             return sdf.format(d);
         }
-
-
     }
 }
