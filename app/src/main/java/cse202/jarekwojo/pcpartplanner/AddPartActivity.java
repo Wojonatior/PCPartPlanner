@@ -14,6 +14,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -77,18 +78,22 @@ public class AddPartActivity extends ActionBarActivity {
         SubmitButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Assume Valid Input
-                //Assign user input to variables
-                String name = nameTextView.getText().toString();
-                String type = (String) partTypeSpinner.getSelectedItem();
-                //Declare and package AddPartActivity return intent (on Activity Result)
-                Intent data = new Intent();
-                // Add part
-                Part p = new Part(name, type, mDate);
-                data.putExtra(Part.PART_EXTRA, p);
-                setResult(RESULT_OK, data);
-                //End Activity
-                finish();
+                //Validate Input
+                if(nameTextView.getText().toString().isEmpty()){
+                    Toast.makeText(getApplicationContext(), "Must enter a part name.", Toast.LENGTH_SHORT).show();
+                }else {
+                    //Assign user input to variables
+                    String name = nameTextView.getText().toString();
+                    String type = (String) partTypeSpinner.getSelectedItem();
+                    //Declare and package AddPartActivity return intent (on Activity Result)
+                    Intent data = new Intent();
+                    // Add part
+                    Part p = new Part(name, type, mDate);
+                    data.putExtra(Part.PART_EXTRA, p);
+                    setResult(RESULT_OK, data);
+                    //End Activity
+                    finish();
+                }
             }
         });
     }
