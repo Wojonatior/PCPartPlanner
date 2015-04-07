@@ -61,6 +61,15 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+        partListView.setOnItemClickListener(new AdapterView.OnItemClickListener(){
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Part p = (Part) mAdapter.getItem(position);
+                Intent detailIntent = new Intent(MainActivity.this, DetailActivity.class);
+                detailIntent.putExtra(Part.PART_EXTRA, p);
+                startActivity(detailIntent);
+            }
+        });
+
         //Reference of add button
         final Button addPartButton = (Button) findViewById(R.id.addPartButton);
 

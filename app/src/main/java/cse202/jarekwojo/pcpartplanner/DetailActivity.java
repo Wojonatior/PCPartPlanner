@@ -4,6 +4,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 
 public class DetailActivity extends ActionBarActivity {
@@ -12,6 +13,23 @@ public class DetailActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
+
+        //Show back button
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        //Get elements
+        TextView nameView = (TextView) findViewById(R.id.partDetail_PartName);
+        TextView descriptionView = (TextView) findViewById(R.id.partDetail_PartDescription);
+        TextView warrantyStartView = (TextView) findViewById(R.id.partDetail_WarrantyStart);
+
+        //Get part
+        if(getIntent().getExtras() != null){
+            Part part = getIntent().getParcelableExtra(Part.PART_EXTRA);
+            nameView.setText(part.getName());
+            descriptionView.setText(part.getType());
+            warrantyStartView.setText(AddPartActivity.DatePickerFragment.formatDate(part.getWarrantyStart()));
+        }
+
     }
 
 
