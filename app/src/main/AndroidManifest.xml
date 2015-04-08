@@ -18,7 +18,8 @@
         </activity>
         <activity
             android:name=".AddPartActivity"
-            android:label="@string/title_activity_add_part" >
+            android:label="@string/title_activity_add_part"
+            android:windowSoftInputMode="stateHidden">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />

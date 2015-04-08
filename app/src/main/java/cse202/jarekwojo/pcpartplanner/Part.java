@@ -18,6 +18,7 @@ public class Part implements Parcelable{
     private String manufacturer;
     private String duration;
     private Date warrantyStart;
+    private String serial;
     private String notes;
 
     //Intent key strings
@@ -32,6 +33,7 @@ public class Part implements Parcelable{
                     (Date) source.readSerializable(), // Date
                     source.readString(), // Manufacturer
                     source.readString(), //Duration
+                    source.readString(), //Serial Number
                     source.readString() //Notes
 
             );
@@ -43,12 +45,13 @@ public class Part implements Parcelable{
         }
     };
 
-    public Part(String n, String d, Date date, String m, String dur, String notes){
+    public Part(String n, String d, Date date, String m, String dur, String s, String notes){
         this.name = n;
         this.type = d;
         this.warrantyStart = date;
         this.manufacturer = m;
         this.duration = dur;
+        this.serial = s;
         this.notes = notes;
 
     }
@@ -101,6 +104,14 @@ public class Part implements Parcelable{
         this.notes = notes;
     }
 
+    public String getSerial() {
+        return serial;
+    }
+
+    public void setSerial(String serial) {
+        this.serial = serial;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -113,12 +124,13 @@ public class Part implements Parcelable{
         dest.writeSerializable(getWarrantyStart());
         dest.writeString(getManufacturer());
         dest.writeString(getDuration());
+        dest.writeString(getSerial());
         dest.writeString(getNotes());
     }
 
     @Override
     public String toString() {
         return name + ITEM_SEP + type + ITEM_SEP + FORMAT.format(warrantyStart) + ITEM_SEP +
-                manufacturer + ITEM_SEP + duration + ITEM_SEP + notes;
+                manufacturer + ITEM_SEP + duration + ITEM_SEP + serial + ITEM_SEP +  notes;
     }
 }

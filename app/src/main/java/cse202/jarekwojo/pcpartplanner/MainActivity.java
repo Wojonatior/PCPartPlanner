@@ -159,12 +159,13 @@ public class MainActivity extends ActionBarActivity {
             Date date = null;
             String manufacturer = null;
             String duration = null;
+            String serial = null;
             String notes = null;
 
             while((name = reader.readLine()) != null){
                 type = reader.readLine();
                 date = Part.FORMAT.parse(reader.readLine());
-                mAdapter.add(new Part(name,type,date,manufacturer,duration,notes));
+                mAdapter.add(new Part(name,type,date,manufacturer,duration,serial,notes));
                 manufacturer = reader.readLine();
                 duration = reader.readLine();
                 notes = reader.readLine();

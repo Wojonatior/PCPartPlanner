@@ -7,6 +7,15 @@
     tools:context="cse202.jarekwojo.pcpartplanner.AddPartActivity"
     android:orientation="vertical">
 
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:id="@+id/scrollView2" >
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
     <TextView
         android:id="@+id/partDetail_PartNameLabel"
         android:layout_width="match_parent"
@@ -97,6 +106,24 @@
         android:text="Some Years"/>
 
     <TextView
+        android:id="@+id/partDetail_SerialNumberLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Serial Number"/>
+
+    <TextView
+        android:id="@+id/partDetail_SerialNumber"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Some Number"/>
+
+    <TextView
         android:id="@+id/partDetail_NotesLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -113,5 +140,8 @@
         android:layout_marginStart="10dp"
         android:textAppearance="?android:textAppearanceLarge"
         android:text="Some Notes"/>
+
+        </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

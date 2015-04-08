@@ -13,38 +13,24 @@
         android:id="@+id/scrollView"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/addPart_SubmitButton"
-        android:layout_alignParentTop="true">
+        android:layout_alignParentTop="true"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
+
+
 
         <RelativeLayout
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
+            android:layout_height="fill_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Part Name:"
-                android:id="@+id/partNameLabel"
-                android:layout_alignParentEnd="false"
-                android:layout_alignParentRight="false"
-                android:layout_alignParentStart="false" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/addPart_PartName"
-                android:hint="(required)"
-                android:maxLines="1"
-                android:layout_below="@+id/partNameLabel" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceLarge"
-                android:text="Description"
-                android:id="@+id/partTypeLabel"
-                android:layout_below="@+id/addPart_PartName" />
+                android:text="Part Type"
+                android:id="@+id/partTypeLabel" />
 
             <Spinner
                 android:layout_width="wrap_content"
@@ -52,7 +38,32 @@
                 android:id="@+id/partTypeSpinner"
                 android:layout_below="@+id/partTypeLabel"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
+            <requestFocus />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Part Name"
+                android:id="@+id/partNameLabel"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentStart="false"
+                android:layout_below="@+id/partTypeSpinner" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_PartName"
+                android:hint="(required)"
+                android:maxLines="1"
+                android:layout_below="@+id/partNameLabel"
+                android:singleLine="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -60,7 +71,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Manufacturer"
                 android:id="@+id/manufacturerNameLabel"
-                android:layout_below="@+id/partTypeSpinner"
+                android:layout_below="@+id/addPart_PartName"
                 android:layout_marginTop="10dp" />
 
             <EditText
@@ -68,7 +79,11 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addPart_ManufacturerName"
                 android:hint="(required)"
-                android:layout_below="@+id/manufacturerNameLabel" />
+                android:layout_below="@+id/manufacturerNameLabel"
+                android:nextFocusDown="@+id/datePickerButton"
+                android:singleLine="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -88,7 +103,9 @@
                 android:id="@+id/datePickerButton"
                 android:layout_alignTop="@+id/dateTextView"
                 android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true" />
+                android:layout_alignParentStart="true"
+                android:focusable="true"
+                android:focusableInTouchMode="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -115,7 +132,25 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/addPart_warrantyDuration"
                 android:hint="(required)"
-                android:layout_below="@+id/warrantyDurationLabel" />
+                android:layout_below="@+id/warrantyDurationLabel"
+                android:singleLine="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Serial Number"
+                android:id="@+id/serialLabel"
+                android:layout_below="@+id/addPart_warrantyDuration"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_SerialNumber"
+                android:hint="(optional)"
+                android:layout_below="@+id/serialLabel"
+                android:singleLine="true" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -123,7 +158,7 @@
                 android:textAppearance="?android:attr/textAppearanceLarge"
                 android:text="Notes"
                 android:id="@+id/Notes"
-                android:layout_below="@+id/addPart_warrantyDuration"
+                android:layout_below="@+id/addPart_SerialNumber"
                 android:layout_marginTop="10dp" />
 
             <EditText
@@ -133,14 +168,16 @@
                 android:hint="(optional)"
                 android:layout_below="@+id/Notes" />
 
+            <Button
+                android:id="@+id/addPart_SubmitButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/addPart_Notes"
+                android:text="Submit"/>
+
         </RelativeLayout>
     </ScrollView>
 
-    <Button
-        android:id="@+id/addPart_SubmitButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:text="Submit"/>
+
 
 </RelativeLayout>

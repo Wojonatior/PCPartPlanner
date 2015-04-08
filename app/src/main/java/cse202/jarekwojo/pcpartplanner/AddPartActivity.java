@@ -77,6 +77,7 @@ public class AddPartActivity extends ActionBarActivity {
         final TextView nameTextView = (TextView) findViewById(R.id.addPart_PartName);
         final TextView mfgTextView = (TextView) findViewById(R.id.addPart_ManufacturerName);
         final TextView durTextView = (TextView) findViewById(R.id.addPart_warrantyDuration);
+        final TextView serialTextView = (TextView) findViewById(R.id.addPart_SerialNumber);
         final TextView notesTextView = (TextView) findViewById(R.id.addPart_Notes);
         //Reference SubmitButton & on click functionality
         Button SubmitButton = (Button) findViewById(R.id.addPart_SubmitButton);
@@ -96,11 +97,12 @@ public class AddPartActivity extends ActionBarActivity {
                     String type = (String) partTypeSpinner.getSelectedItem();
                     String manufacturer = mfgTextView.getText().toString();
                     String duration = durTextView.getText().toString();
+                    String serial = serialTextView.getText().toString();
                     String notes = notesTextView.getText().toString();
                     //Declare and package AddPartActivity return intent (on Activity Result)
                     Intent data = new Intent();
                     // Add part
-                    Part p = new Part(name, type, mDate, manufacturer, duration, notes);
+                    Part p = new Part(name, type, mDate, manufacturer, duration, serial, notes);
                     data.putExtra(Part.PART_EXTRA, p);
                     setResult(RESULT_OK, data);
                     //End Activity
