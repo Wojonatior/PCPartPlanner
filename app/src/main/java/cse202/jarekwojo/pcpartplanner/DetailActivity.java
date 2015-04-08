@@ -21,6 +21,9 @@ public class DetailActivity extends ActionBarActivity {
         TextView nameView = (TextView) findViewById(R.id.partDetail_PartName);
         TextView descriptionView = (TextView) findViewById(R.id.partDetail_PartDescription);
         TextView warrantyStartView = (TextView) findViewById(R.id.partDetail_WarrantyStart);
+        TextView manufacturerView = (TextView) findViewById(R.id.partDetail_Manufacturer);
+        TextView durationView = (TextView) findViewById(R.id.partDetail_WarrantyDuration);
+        TextView notesView = (TextView) findViewById(R.id.partDetail_Notes);
 
         //Get part
         if(getIntent().getExtras() != null){
@@ -28,6 +31,9 @@ public class DetailActivity extends ActionBarActivity {
             nameView.setText(part.getName());
             descriptionView.setText(part.getType());
             warrantyStartView.setText(AddPartActivity.DatePickerFragment.formatDate(part.getWarrantyStart()));
+            manufacturerView.setText(part.getManufacturer());
+            durationView.setText(part.getDuration());
+            notesView.setText(part.getNotes());
         }
 
     }

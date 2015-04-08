@@ -157,11 +157,17 @@ public class MainActivity extends ActionBarActivity {
             String name = null;
             String type = null;
             Date date = null;
+            String manufacturer = null;
+            String duration = null;
+            String notes = null;
 
             while((name = reader.readLine()) != null){
                 type = reader.readLine();
                 date = Part.FORMAT.parse(reader.readLine());
-                mAdapter.add(new Part(name,type,date));
+                mAdapter.add(new Part(name,type,date,manufacturer,duration,notes));
+                manufacturer = reader.readLine();
+                duration = reader.readLine();
+                notes = reader.readLine();
             }
         }catch(FileNotFoundException fnf){
             fnf.printStackTrace();

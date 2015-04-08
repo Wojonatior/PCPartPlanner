@@ -16,6 +16,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.w3c.dom.Text;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -73,6 +75,9 @@ public class AddPartActivity extends ActionBarActivity {
         });
         //Reference nameTextView
         final TextView nameTextView = (TextView) findViewById(R.id.addPart_PartName);
+        final TextView mfgTextView = (TextView) findViewById(R.id.addPart_ManufacturerName);
+        final TextView durTextView = (TextView) findViewById(R.id.addPart_warrantyDuration);
+        final TextView notesTextView = (TextView) findViewById(R.id.addPart_Notes);
         //Reference SubmitButton & on click functionality
         Button SubmitButton = (Button) findViewById(R.id.addPart_SubmitButton);
         SubmitButton.setOnClickListener(new View.OnClickListener() {
@@ -81,14 +86,21 @@ public class AddPartActivity extends ActionBarActivity {
                 //Validate Input
                 if(nameTextView.getText().toString().isEmpty()){
                     Toast.makeText(getApplicationContext(), "Must enter a part name.", Toast.LENGTH_SHORT).show();
+                } else if(mfgTextView.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Must enter a manufacturer.", Toast.LENGTH_SHORT).show();
+                } else if(durTextView.getText().toString().isEmpty()) {
+                    Toast.makeText(getApplicationContext(), "Must enter a warranty duration.", Toast.LENGTH_SHORT).show();
                 }else {
                     //Assign user input to variables
                     String name = nameTextView.getText().toString();
                     String type = (String) partTypeSpinner.getSelectedItem();
+                    String manufacturer = mfgTextView.getText().toString();
+                    String duration = durTextView.getText().toString();
+                    String notes = notesTextView.getText().toString();
                     //Declare and package AddPartActivity return intent (on Activity Result)
                     Intent data = new Intent();
                     // Add part
-                    Part p = new Part(name, type, mDate);
+                    Part p = new Part(name, type, mDate, manufacturer, duration, notes);
                     data.putExtra(Part.PART_EXTRA, p);
                     setResult(RESULT_OK, data);
                     //End Activity

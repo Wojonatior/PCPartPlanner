@@ -7,36 +7,134 @@
     tools:context="cse202.jarekwojo.pcpartplanner.AddPartActivity"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentTop="true"
-        android:id="@+id/linearLayout">
+        android:id="@+id/scrollView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_above="@+id/addPart_SubmitButton"
+        android:layout_alignParentTop="true">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Part Name:"
-            android:id="@+id/partNameLabel" />
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
 
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/addPart_PartName"
-            android:hint="(required)"
-            android:maxLines="1" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Part Name:"
+                android:id="@+id/partNameLabel"
+                android:layout_alignParentEnd="false"
+                android:layout_alignParentRight="false"
+                android:layout_alignParentStart="false" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Description"
-            android:id="@+id/partTypeLabel"
-            android:layout_marginTop="10dp" />
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_PartName"
+                android:hint="(required)"
+                android:maxLines="1"
+                android:layout_below="@+id/partNameLabel" />
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Description"
+                android:id="@+id/partTypeLabel"
+                android:layout_below="@+id/addPart_PartName" />
+
+            <Spinner
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/partTypeSpinner"
+                android:layout_below="@+id/partTypeLabel"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Manufacturer"
+                android:id="@+id/manufacturerNameLabel"
+                android:layout_below="@+id/partTypeSpinner"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_ManufacturerName"
+                android:hint="(required)"
+                android:layout_below="@+id/manufacturerNameLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Warranty Start Date"
+                android:id="@+id/dateTextLabel"
+                android:layout_below="@+id/addPart_ManufacturerName"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="10dp" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Set Date"
+                android:id="@+id/datePickerButton"
+                android:layout_alignTop="@+id/dateTextView"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Date"
+                android:id="@+id/dateTextView"
+                android:layout_below="@+id/dateTextLabel"
+                android:layout_toRightOf="@+id/datePickerButton"
+                android:layout_toEndOf="@+id/datePickerButton"
+                android:paddingTop="15dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Warranty Duration"
+                android:id="@+id/warrantyDurationLabel"
+                android:layout_below="@+id/datePickerButton"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_warrantyDuration"
+                android:hint="(required)"
+                android:layout_below="@+id/warrantyDurationLabel" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:text="Notes"
+                android:id="@+id/Notes"
+                android:layout_below="@+id/addPart_warrantyDuration"
+                android:layout_marginTop="10dp" />
+
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPart_Notes"
+                android:hint="(optional)"
+                android:layout_below="@+id/Notes" />
+
+        </RelativeLayout>
+    </ScrollView>
 
     <Button
         android:id="@+id/addPart_SubmitButton"
@@ -44,43 +142,5 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:text="Submit"/>
-
-    <Spinner
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/partTypeSpinner"
-        android:layout_below="@+id/linearLayout"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Warranty Start Date"
-        android:id="@+id/dateTextLabel"
-        android:layout_below="@+id/partTypeSpinner"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Set Date"
-        android:id="@+id/datePickerButton"
-        android:layout_alignTop="@+id/dateTextView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Date"
-        android:id="@+id/dateTextView"
-        android:layout_below="@+id/dateTextLabel"
-        android:layout_toRightOf="@+id/datePickerButton"
-        android:layout_toEndOf="@+id/datePickerButton"
-        android:paddingTop="15dp" />
 
 </RelativeLayout>

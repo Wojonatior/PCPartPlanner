@@ -43,6 +43,24 @@
         android:text="Some Description"/>
 
     <TextView
+        android:id="@+id/partDetail_ManufacturerLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Manufacturer"/>
+
+    <TextView
+        android:id="@+id/partDetail_Manufacturer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Some Manufacturer"/>
+
+    <TextView
         android:id="@+id/partDetail_WarrantyStartLabel"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,4 +77,41 @@
         android:layout_marginStart="10dp"
         android:textAppearance="?android:textAppearanceLarge"
         android:text="April 6, 2015"/>
+
+    <TextView
+        android:id="@+id/partDetail_WarrantyDurationLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Warranty Duration"/>
+
+    <TextView
+        android:id="@+id/partDetail_WarrantyDuration"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Some Years"/>
+
+    <TextView
+        android:id="@+id/partDetail_NotesLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:textStyle="bold"
+        android:text="Notes"/>
+
+    <TextView
+        android:id="@+id/partDetail_Notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
+        android:textAppearance="?android:textAppearanceLarge"
+        android:text="Some Notes"/>
+
 </LinearLayout>

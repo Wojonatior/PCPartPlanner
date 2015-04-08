@@ -13,8 +13,12 @@ import java.util.Locale;
 public class Part implements Parcelable{
     public static final String ITEM_SEP = System.getProperty("line.separator");
     public static final SimpleDateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    private String name, type;
+    private String name;
+    private String type;
+    private String manufacturer;
+    private String duration;
     private Date warrantyStart;
+    private String notes;
 
     //Intent key strings
     public static final String PART_EXTRA = "partExtra";
@@ -25,7 +29,11 @@ public class Part implements Parcelable{
             return new Part(
                     source.readString(), // Name
                     source.readString(), // Type
-                    (Date) source.readSerializable() // Date
+                    (Date) source.readSerializable(), // Date
+                    source.readString(), // Manufacturer
+                    source.readString(), //Duration
+                    source.readString() //Notes
+
             );
         }
 
@@ -35,10 +43,14 @@ public class Part implements Parcelable{
         }
     };
 
-    public Part(String n, String d, Date date){
+    public Part(String n, String d, Date date, String m, String dur, String notes){
         this.name = n;
         this.type = d;
         this.warrantyStart = date;
+        this.manufacturer = m;
+        this.duration = dur;
+        this.notes = notes;
+
     }
 
     public void setType(String type) {
@@ -65,6 +77,30 @@ public class Part implements Parcelable{
         return warrantyStart;
     }
 
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public void setManufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    public String getDuration() {
+        return duration;
+    }
+
+    public void setDuration(String duration) {
+        this.duration = duration;
+    }
+
+    public String getNotes() {
+        return notes;
+    }
+
+    public void setNotes(String notes) {
+        this.notes = notes;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -75,10 +111,14 @@ public class Part implements Parcelable{
         dest.writeString(getName());
         dest.writeString(getType());
         dest.writeSerializable(getWarrantyStart());
+        dest.writeString(getManufacturer());
+        dest.writeString(getDuration());
+        dest.writeString(getNotes());
     }
 
     @Override
     public String toString() {
-        return name + ITEM_SEP + type + ITEM_SEP + FORMAT.format(warrantyStart);
+        return name + ITEM_SEP + type + ITEM_SEP + FORMAT.format(warrantyStart) + ITEM_SEP +
+                manufacturer + ITEM_SEP + duration + ITEM_SEP + notes;
     }
 }
