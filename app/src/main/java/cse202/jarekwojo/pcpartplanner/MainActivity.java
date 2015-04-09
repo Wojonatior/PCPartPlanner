@@ -165,10 +165,10 @@ public class MainActivity extends ActionBarActivity {
             while((name = reader.readLine()) != null){
                 type = reader.readLine();
                 date = Part.FORMAT.parse(reader.readLine());
-                mAdapter.add(new Part(name,type,date,manufacturer,duration,serial,notes));
                 manufacturer = reader.readLine();
                 duration = reader.readLine();
                 notes = reader.readLine();
+                mAdapter.add(new Part(name,type,date,manufacturer,duration,serial,notes));
             }
         }catch(FileNotFoundException fnf){
             fnf.printStackTrace();

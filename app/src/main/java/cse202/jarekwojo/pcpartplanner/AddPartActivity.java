@@ -40,13 +40,29 @@ public class AddPartActivity extends ActionBarActivity {
         "Custom"
     };
 
+    String[] warrantyDurations = new String[] {
+            "30 Days",
+            "60 Days",
+            "3 Months",
+            "6 Months",
+            "9 Months",
+            "1 Year",
+            "2 Years",
+            "3 Years",
+            "5 Years",
+            "7 Years",
+            "10 Years",
+            "Lifetime",
+            "Other"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_part);
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //Reference and setup spinner adapter
+        //Reference and setup partTypes spinner adapter
         final Spinner partTypeSpinner = (Spinner) findViewById(R.id.partTypeSpinner);
         ArrayAdapter<String> typeSpinnerAdapter = new ArrayAdapter<String>(
                 AddPartActivity.this,
@@ -54,6 +70,13 @@ public class AddPartActivity extends ActionBarActivity {
                 partTypes);
         typeSpinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         partTypeSpinner.setAdapter(typeSpinnerAdapter);
+
+        final Spinner warrantyDurationSpinner = (Spinner) findViewById(R.id.warrantyDurationSpinner);
+        ArrayAdapter<String> durationSpinnerAdapter = new ArrayAdapter<String>(
+                AddPartActivity.this,
+                android.R.layout.simple_spinner_item,
+                warrantyDurations);
+        warrantyDurationSpinner.setAdapter(durationSpinnerAdapter);
 
         //Set default date if necessary
         if(mDate == null){
@@ -76,7 +99,6 @@ public class AddPartActivity extends ActionBarActivity {
         //Reference nameTextView
         final TextView nameTextView = (TextView) findViewById(R.id.addPart_PartName);
         final TextView mfgTextView = (TextView) findViewById(R.id.addPart_ManufacturerName);
-        final TextView durTextView = (TextView) findViewById(R.id.addPart_warrantyDuration);
         final TextView serialTextView = (TextView) findViewById(R.id.addPart_SerialNumber);
         final TextView notesTextView = (TextView) findViewById(R.id.addPart_Notes);
         //Reference SubmitButton & on click functionality
@@ -89,14 +111,12 @@ public class AddPartActivity extends ActionBarActivity {
                     Toast.makeText(getApplicationContext(), "Must enter a part name.", Toast.LENGTH_SHORT).show();
                 } else if(mfgTextView.getText().toString().isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Must enter a manufacturer.", Toast.LENGTH_SHORT).show();
-                } else if(durTextView.getText().toString().isEmpty()) {
-                    Toast.makeText(getApplicationContext(), "Must enter a warranty duration.", Toast.LENGTH_SHORT).show();
                 }else {
                     //Assign user input to variables
                     String name = nameTextView.getText().toString();
                     String type = (String) partTypeSpinner.getSelectedItem();
                     String manufacturer = mfgTextView.getText().toString();
-                    String duration = durTextView.getText().toString();
+                    String duration = (String) warrantyDurationSpinner.getSelectedItem();
                     String serial = serialTextView.getText().toString();
                     String notes = notesTextView.getText().toString();
                     //Declare and package AddPartActivity return intent (on Activity Result)
